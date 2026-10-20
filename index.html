@@ -1,0 +1,530 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vườn Hoa 20/10 🌷</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom, #172554, #4c1d95, #be185d);
+    color: white;
+    height: 100vh;
+    height: 100dvh;
+}
+
+.sky {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    color: #fff8c5;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .2;
+        transform: scale(.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Tiêu đề */
+.content {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    padding: 0 15px;
+    z-index: 8;
+}
+
+h1 {
+    color: #fbcfe8;
+    font-size: clamp(25px, 5vw, 48px);
+    text-shadow: 0 0 20px #f472b6;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #f472b6;
+    }
+    to {
+        text-shadow: 0 0 30px #fb7185, 0 0 45px #f9a8d4;
+    }
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: clamp(13px, 2.5vw, 17px);
+    color: #fce7f3;
+}
+
+/* Khu vườn */
+.garden {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ground {
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 110%;
+    height: 35%;
+    background: linear-gradient(to bottom, #166534, #052e16);
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 -8px 30px #4ade8033;
+}
+
+/* Từng bông hoa */
+.flower {
+    position: absolute;
+    bottom: 12%;
+    width: 10px;
+    transform-origin: bottom center;
+    animation: sway var(--speed, 3s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+}
+
+.stem {
+    width: 4px;
+    height: var(--height);
+    background: linear-gradient(to right, #15803d, #4ade80);
+    border-radius: 5px;
+    margin: auto;
+    position: relative;
+}
+
+.leaf {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    background: linear-gradient(135deg, #86efac, #16a34a);
+    border-radius: 100% 0 100% 0;
+}
+
+.leaf.left {
+    right: 2px;
+    top: 55%;
+    transform: rotate(20deg);
+}
+
+.leaf.right {
+    left: 2px;
+    top: 72%;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+/* Đầu hoa */
+.head {
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translateX(-50%);
+    animation: bloom 1.5s ease-out both;
+    animation-delay: var(--delay, 0s);
+}
+
+.petal {
+    position: absolute;
+    left: 25px;
+    top: 0;
+    width: 21px;
+    height: 35px;
+    border-radius: 50% 50% 45% 45%;
+    background: var(--color);
+    transform-origin: 50% 35px;
+    box-shadow: inset -3px -3px 5px #0002,
+                0 0 7px #ffffff33;
+}
+
+.center {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff7ad, #f59e0b);
+    box-shadow: 0 0 12px #fef08a;
+}
+
+@keyframes sway {
+    from {
+        transform: rotate(-5deg) scale(var(--scale, 1));
+    }
+    to {
+        transform: rotate(6deg) scale(var(--scale, 1));
+    }
+}
+
+@keyframes bloom {
+    from {
+        transform: translateX(-50%) scale(0);
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Trái tim bay */
+.heart {
+    position: fixed;
+    bottom: -40px;
+    color: #f9a8d4;
+    animation: fly var(--duration, 6s) linear forwards;
+    pointer-events: none;
+    z-index: 6;
+    text-shadow: 0 0 10px #f472b6;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Khung lời chúc */
+.message {
+    position: fixed;
+    left: 50%;
+    top: 47%;
+    transform: translate(-50%, -50%);
+    width: min(88%, 480px);
+    max-height: 75vh;
+    max-height: 75dvh;
+    overflow-y: auto;
+    padding: 25px;
+    border: 1px solid #fbcfe8;
+    border-radius: 25px;
+    background: #3b1558df;
+    backdrop-filter: blur(12px);
+    text-align: center;
+    z-index: 15;
+    box-shadow: 0 0 35px #f472b680;
+    display: none;
+    animation: messageIn .6s ease-out;
+}
+
+.message h2 {
+    color: #fbcfe8;
+    margin-bottom: 15px;
+    font-size: clamp(20px, 4vw, 27px);
+}
+
+.message p {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #fff7fb;
+}
+
+.signature {
+    color: #fbcfe8;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        margin-top: 20px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+/* Nút bấm */
+button {
+    margin-top: 18px;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ec4899, #f43f5e);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 15px #f472b6;
+    transition: transform .3s, box-shadow .3s;
+    pointer-events: auto;
+}
+
+button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px #f472b6;
+}
+
+.close-btn {
+    margin-top: 20px;
+}
+
+/* Màn hình nhỏ */
+@media (max-width: 600px) {
+    .content {
+        top: 4%;
+    }
+
+    .garden {
+        height: 65%;
+    }
+
+    .message {
+        padding: 20px 16px;
+    }
+
+    .message p {
+        font-size: 14px;
+    }
+}
+
+@media (max-height: 600px) {
+    .content {
+        top: 2%;
+    }
+
+    .garden {
+        height: 58%;
+    }
+
+    .message {
+        top: 52%;
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sky" id="sky"></div>
+
+<div class="content">
+    <h1>🌷 Happy Women's Day 🌷</h1>
+    <p class="subtitle">
+        Chào mừng ngày Phụ nữ Việt Nam 20/10 💖
+    </p>
+    <button onclick="showMessage()">
+        💌 Nhận lời chúc
+    </button>
+</div>
+
+<div class="message" id="message">
+    <h2>🌸 Gửi những bông hoa xinh đẹp 🌸</h2>
+
+    <p>
+        Chúc các bạn ngày 20/10 thật vui vẻ và hạnh phúc! 💕
+        <br>
+        Luôn xinh đẹp như những đóa hoa,
+        <br>
+        luôn rạng rỡ với nụ cười trên môi,
+        <br>
+        luôn tự tin theo đuổi ước mơ
+        <br>
+        và được yêu thương mỗi ngày! 🌷
+        <br><br>
+        Mong mọi điều dịu dàng nhất
+        <br>
+        sẽ đến với mí bạn. 💗
+    </p>
+
+    <div class="signature">
+        Chúc mí bạn luôn hạnh phúc! 💐
+    </div>
+
+    <button class="close-btn" onclick="closeMessage()">
+        Đóng 💗
+    </button>
+</div>
+
+<div class="garden" id="garden">
+    <div class="ground"></div>
+</div>
+
+<script>
+const sky = document.getElementById("sky");
+const garden = document.getElementById("garden");
+
+const colors = [
+    "#fb7185",
+    "#f9a8d4",
+    "#facc15",
+    "#c4b5fd",
+    "#ffffff",
+    "#fdba74",
+    "#f472b6",
+    "#fda4af",
+    "#e879f9",
+    "#fde68a"
+];
+
+// Tạo bầu trời đầy sao
+for (let i = 0; i < 100; i++) {
+    const star = document.createElement("span");
+
+    star.className = "star";
+    star.textContent = Math.random() > 0.5 ? "✦" : "·";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+    star.style.animationDelay = Math.random() * 3 + "s";
+
+    sky.appendChild(star);
+}
+
+// Tạo vườn hoa 100 bông, xếp thành nhiều lớp
+const flowerCount = 100;
+
+for (let i = 0; i < flowerCount; i++) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+
+    const layer = Math.random();
+
+    // Hoa phân bố đều theo chiều ngang
+    // Có thêm độ lệch ngẫu nhiên để tự nhiên hơn
+    const left = ((i / flowerCount) * 100
+        + (Math.random() - 0.5) * 2.5 + 100) % 100;
+
+    const height = 70 + Math.random() * 190;
+    const color = colors[
+        Math.floor(Math.random() * colors.length)
+    ];
+
+    // Lớp phía trước thấp hơn, lớp phía sau cao hơn
+    const bottom = 5 + layer * 30;
+    const scale = 0.55 + layer * 0.65;
+    const delay = Math.random() * 2.5;
+    const speed = 2.2 + Math.random() * 2.5;
+
+    flower.style.left = left + "%";
+    flower.style.bottom = bottom + "%";
+    flower.style.setProperty("--height", height + "px");
+    flower.style.setProperty("--scale", scale);
+    flower.style.setProperty("--delay", delay + "s");
+    flower.style.setProperty("--speed", speed + "s");
+
+    // Hoa phía trước được hiển thị nổi bật hơn
+    flower.style.zIndex = Math.floor(layer * 5) + 1;
+
+    // Thân hoa
+    const stem = document.createElement("div");
+    stem.className = "stem";
+
+    const leaf1 = document.createElement("div");
+    leaf1.className = "leaf left";
+
+    const leaf2 = document.createElement("div");
+    leaf2.className = "leaf right";
+
+    stem.appendChild(leaf1);
+    stem.appendChild(leaf2);
+
+    // Cánh hoa
+    const head = document.createElement("div");
+    head.className = "head";
+
+    for (let j = 0; j < 8; j++) {
+        const petal = document.createElement("div");
+
+        petal.className = "petal";
+        petal.style.setProperty("--color", color);
+        petal.style.transform = `rotate(${j * 45}deg)`;
+
+        head.appendChild(petal);
+    }
+
+    // Nhụy hoa
+    const center = document.createElement("div");
+    center.className = "center";
+
+    head.appendChild(center);
+
+    flower.appendChild(stem);
+    flower.appendChild(head);
+
+    garden.appendChild(flower);
+}
+
+// Tạo trái tim và cánh hoa bay
+function createHeart() {
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const symbols = ["❤", "💕", "💗", "🌸", "🌷", "✨"];
+
+    heart.textContent = symbols[
+        Math.floor(Math.random() * symbols.length)
+    ];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 22) + "px";
+    heart.style.setProperty(
+        "--duration",
+        (5 + Math.random() * 5) + "s"
+    );
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 11000);
+}
+
+setInterval(createHeart, 400);
+
+// Mở lời chúc
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+
+    // Tạo hiệu ứng trái tim khi mở lời chúc
+    for (let i = 0; i < 15; i++) {
+        setTimeout(createHeart, i * 100);
+    }
+}
+
+// Đóng lời chúc
+function closeMessage() {
+    document.getElementById("message").style.display = "none";
+}
+</script>
+
+</body>
+</html>
+```
